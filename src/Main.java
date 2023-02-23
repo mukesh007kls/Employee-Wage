@@ -10,7 +10,7 @@ public class Main {
         int employeeHours = 0;
         int employeeWage = 0;
         int employeeDays = 0;
-        int employeePresentDays = 0;
+        double employeePresentDays = 0;
         while (employeeHours <= TOTAL_WORKING_HOURS_ALLOWED && employeeDays < EMPLOYEE_WORKING_DAYS_PER_MONTH) {
             int empPresent = (int) Math.floor(Math.random() * 10) % 3;
             switch (empPresent) {
@@ -20,7 +20,7 @@ public class Main {
                     System.out.println("Employee Present full time:" + employeePresentDays + " " + employeeHours);
                     break;
                 case PART_TIME:
-                    employeePresentDays++;
+                    employeePresentDays+=0.5;
                     employeeHours += 4;
                     System.out.println("Employee present part time:" + employeePresentDays + " " + employeeHours);
                     break;
