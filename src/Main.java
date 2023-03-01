@@ -1,4 +1,4 @@
-public class Employee_Wage {
+public class Main {
     final int FULL_TIME = 1;
     final int PART_TIME = 2;
     final int EMPLOYEE_WAGE_PER_HOUR = 20;
@@ -6,7 +6,7 @@ public class Employee_Wage {
     final int TOTAL_WORKING_HOURS_ALLOWED = 100;
 
     public static void main(String[] args) {
-        Employee_Wage emp = new Employee_Wage();
+        Main emp = new Main();
         emp.employee_Wage();
     }
 
