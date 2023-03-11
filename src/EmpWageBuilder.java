@@ -23,7 +23,7 @@ public class EmpWageBuilder implements IEmployeeWage {
        for (int i = 0; i < companyEmpWageArrayList.size(); i++) {
            CompanyEmpWage companyEmpWage=companyEmpWageArrayList.get(i);
            companyEmpWage.setTotalEmployeeWage(this.computeEmployeeWage(companyEmpWage));
-           System.out.println(companyEmpWageArrayList.get(i));
+           System.out.println(companyEmpWageArrayList.get(i)+" daily wage is:- "+companyEmpWage.employeeDailyWage);
        }
    }
 
@@ -31,16 +31,23 @@ public class EmpWageBuilder implements IEmployeeWage {
         int empWorkingHours=0;
         int totalEmployeeHours=0;
         int totalWorkingDaysPerMonth=0;
+
         while (totalEmployeeHours<=companyEmpWage.totalWorkingHoursAllowed&&totalWorkingDaysPerMonth<companyEmpWage.employeeWorkingDaysPerMonth) {
             totalWorkingDaysPerMonth++;
             int employeeCheck = (int) (Math.random() * 10 % 3);
             switch (employeeCheck) {
-                case FULL_TIME -> empWorkingHours = 8;
-                case PART_TIME -> empWorkingHours = 4;
+                case FULL_TIME -> {
+                    empWorkingHours = 8;
+                    companyEmpWage.employeeDailyWage.add(empWorkingHours*companyEmpWage.employeeWagePerHour);
+                }
+                case PART_TIME -> {
+                    empWorkingHours = 4;
+                    companyEmpWage.employeeDailyWage.add(empWorkingHours*companyEmpWage.employeeWagePerHour);
+                }
+                default -> companyEmpWage.employeeDailyWage.add(0);
             }
             totalEmployeeHours+=empWorkingHours;
         }
         return  totalEmployeeHours*companyEmpWage.employeeWagePerHour;
     }
-
 }
