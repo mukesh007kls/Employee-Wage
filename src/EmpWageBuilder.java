@@ -1,14 +1,12 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 
 public class EmpWageBuilder implements IEmployeeWage {
     public static final int FULL_TIME = 1;
     public static final int PART_TIME = 2;
 
-    private int numberOfCompanies;
-    private CompanyEmpWage[] companyEmpWageArray;
+    private ArrayList<CompanyEmpWage> companyEmpWageArrayList;
     public EmpWageBuilder(){
-        companyEmpWageArray=new CompanyEmpWage[5];
+        companyEmpWageArrayList =new ArrayList<>();
     }
 
     public static void main(String[] args) {
@@ -19,13 +17,13 @@ public class EmpWageBuilder implements IEmployeeWage {
         empWageBuilder.computeWage();
     }
    public void addCompanyEmployeeWage(String companyName, int employeeWagePerHour, int employeeWorkingDaysPerMonth, int totalWorkingHoursAllowed){
-        companyEmpWageArray[numberOfCompanies]=new CompanyEmpWage(companyName,employeeWagePerHour,employeeWorkingDaysPerMonth,totalWorkingHoursAllowed);
-        numberOfCompanies++;
+        companyEmpWageArrayList.add(new CompanyEmpWage(companyName,employeeWagePerHour,employeeWorkingDaysPerMonth,totalWorkingHoursAllowed));
    }
    public void computeWage(){
-       for (int i = 0; i < numberOfCompanies; i++) {
-           companyEmpWageArray[i].setTotalEmployeeWage(this.computeEmployeeWage(companyEmpWageArray[i]));
-           System.out.println(companyEmpWageArray[i]);
+       for (int i = 0; i < companyEmpWageArrayList.size(); i++) {
+           CompanyEmpWage companyEmpWage=companyEmpWageArrayList.get(i);
+           companyEmpWage.setTotalEmployeeWage(this.computeEmployeeWage(companyEmpWage));
+           System.out.println(companyEmpWageArrayList.get(i));
        }
    }
 
