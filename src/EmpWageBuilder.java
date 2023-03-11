@@ -15,6 +15,8 @@ public class EmpWageBuilder implements IEmployeeWage {
         empWageBuilder.addCompanyEmployeeWage("Instagram",20,29,120);
         empWageBuilder.addCompanyEmployeeWage("chatGpt",10,23,200);
         empWageBuilder.computeWage();
+        System.out.println();
+        System.out.println("Total wage of Facebook is:-"+empWageBuilder.getTotalWageOfCompany("Facebook"));
     }
    public void addCompanyEmployeeWage(String companyName, int employeeWagePerHour, int employeeWorkingDaysPerMonth, int totalWorkingHoursAllowed){
         companyEmpWageArrayList.add(new CompanyEmpWage(companyName,employeeWagePerHour,employeeWorkingDaysPerMonth,totalWorkingHoursAllowed));
@@ -23,7 +25,7 @@ public class EmpWageBuilder implements IEmployeeWage {
        for (int i = 0; i < companyEmpWageArrayList.size(); i++) {
            CompanyEmpWage companyEmpWage=companyEmpWageArrayList.get(i);
            companyEmpWage.setTotalEmployeeWage(this.computeEmployeeWage(companyEmpWage));
-           System.out.println(companyEmpWageArrayList.get(i)+" daily wage is:- "+companyEmpWage.employeeDailyWage);
+           //System.out.println(companyEmpWageArrayList.get(i)+" daily wage is:- "+companyEmpWage.employeeDailyWage);
        }
    }
 
@@ -49,5 +51,13 @@ public class EmpWageBuilder implements IEmployeeWage {
             totalEmployeeHours+=empWorkingHours;
         }
         return  totalEmployeeHours*companyEmpWage.employeeWagePerHour;
+    }
+    public int getTotalWageOfCompany(String companyName){
+        for (CompanyEmpWage cew:companyEmpWageArrayList) {
+            if (cew.companyName.equalsIgnoreCase(companyName)){
+                return cew.totalEmployeeWage;
+            }
+        }
+        return -1;
     }
 }
