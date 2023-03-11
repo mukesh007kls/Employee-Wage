@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class EmpWageBuilder {
+public class EmpWageBuilder implements IEmployeeWage {
     public static final int FULL_TIME = 1;
     public static final int PART_TIME = 2;
 
@@ -18,11 +18,11 @@ public class EmpWageBuilder {
         empWageBuilder.addCompanyEmployeeWage("chatGpt",10,23,200);
         empWageBuilder.computeWage();
     }
-   private void addCompanyEmployeeWage(String companyName,int employeeWagePerHour,int employeeWorkingDaysPerMonth,int totalWorkingHoursAllowed){
+   public void addCompanyEmployeeWage(String companyName, int employeeWagePerHour, int employeeWorkingDaysPerMonth, int totalWorkingHoursAllowed){
         companyEmpWageArray[numberOfCompanies]=new CompanyEmpWage(companyName,employeeWagePerHour,employeeWorkingDaysPerMonth,totalWorkingHoursAllowed);
         numberOfCompanies++;
    }
-   private void computeWage(){
+   public void computeWage(){
        for (int i = 0; i < numberOfCompanies; i++) {
            companyEmpWageArray[i].setTotalEmployeeWage(this.computeEmployeeWage(companyEmpWageArray[i]));
            System.out.println(companyEmpWageArray[i]);
